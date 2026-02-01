@@ -14,7 +14,7 @@ SparkHomework/
 
 🚀 Быстрый запуск проекта в Docker
 Сборка Docker образа:docker build -t spark-boston-crimes .
-апуск агрегации данных (создание витрины):
+Запуск агрегации данных (создание витрины):
 docker run --rm -v "${PWD}:/app" spark-boston-crimes spark-submit src/boston_crimes_scripts/job.py data output
 
 data — папка с исходными CSV
