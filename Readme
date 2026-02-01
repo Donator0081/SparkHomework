@@ -1,0 +1,24 @@
+Boston Crimes Spark Project
+Проект собирает витрину по криминальной обстановке в Бостоне с помощью PySpark и сохраняет результат в Parquet.
+
+📂 Структура проекта
+SparkHomework/
+├── data/                       # CSV-файлы с данными (crime.csv, offense_codes.csv)
+├── output/                     # Папка для сохранения Parquet результата
+├── src/
+│   └── boston_crimes_scripts/
+│       ├── job.py              # Скрипт агрегирования данных
+│       └── check_results.py    # Скрипт проверки результата
+├── Dockerfile                  # Docker образ для запуска Spark
+└── README.md
+
+🚀 Быстрый запуск проекта в Docker
+Сборка Docker образа:docker build -t spark-boston-crimes .
+апуск агрегации данных (создание витрины):
+docker run --rm -v "${PWD}:/app" spark-boston-crimes spark-submit src/boston_crimes_scripts/job.py data output
+
+data — папка с исходными CSV
+output — папка для сохранения результата в Parquet
+
+Проверка результата:
+docker run --rm -v "${PWD}:/app" spark-boston-crimes python3 src/boston_crimes_scripts/check_results.py output/part-*.parquet
